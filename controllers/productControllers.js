@@ -11,11 +11,23 @@ new Promise((resolve,reject)=>{
         reject('you don\'t have access to the create product')
     }
 }).then(async()=>{
-const productCreated= await   productCollection.insertOne(req.body)
-res.status(201).json(productCreated)
-
-
-
+        console.log('hello')
+        const {name,description,price,count}=req.body
+    //    if(name&&description&&price&&count)
+    //    { 
+        const productCreated= await   productCollection.insertOne({
+            name:req.body.name,
+            description:req.body.description,
+            price:req.body.price,
+            count:req.body.count
+        })
+        res.status(201).json(productCreated)
+    // }
+    // else{
+        // res.status(400)
+        // next({message:'all fields are required'})
+    // }
+    
 }).catch(err=>
     {
         res.status(500)
@@ -37,7 +49,7 @@ const updateProduct=(req,res)=>{
         }
     }).then(async()=>{
 await productCollection.updateOne({
-    _id:new ObjectId(req.body.product_id)
+    _id:new ObjectId(req.params.product_id)
 },{
     $set:{
         name:req.body.name,
@@ -65,11 +77,17 @@ const getAllProducts=async(req,res)=>{
         else{
             reject('you don\'t have access to this route')
         }
+    }).then(async()=>{
+   const products=     await productCollection.find({}).toArray()
+        res.status(200).json(products)
+    }).catch(err=>{
+        res.status(400)
+        next({message:err})
     })
-    await productCollection.find().toArray()
     }
 module.exports={
     createProduct,
-    updateProduct
+    updateProduct,
+    getAllProducts
 
 }

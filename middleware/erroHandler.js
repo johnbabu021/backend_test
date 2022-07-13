@@ -1,7 +1,10 @@
 const express=require('express')
 const errHandler=(err,req,res,next)=>{
     if(err){
-        res.status(res.statusCode).json({err:err.message})
+        res.status(res.statusCode||500).json({err:err.message    })
+// res.render('error',{err:err.message})
+        
+
     }
 }
 

@@ -10,7 +10,17 @@ connect()
 app.use(cors())
 
 
+//@route /api/user
+//@method post
+//@access public
+//@authorization `Bearer ${token}`
+//@functions register login 
 app.use('/api/user',RegisterRouter)
+
+//@route /api/products
+//@access private
+//@authorization `Bearer ${token}`
+//@functions create update read 
 app.use('/api/products',productRoutes)
 app.use(errHandler)
 app.use(notFound)

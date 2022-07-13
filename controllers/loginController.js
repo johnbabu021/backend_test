@@ -29,6 +29,7 @@ const loginController = async (req, res, next) => {
                 _id:user._id,
                 username: user.username,
                 email: user.email,
+                role:user.role,
                 token: await generateToken(user._id)
 
             })}
@@ -42,6 +43,10 @@ const loginController = async (req, res, next) => {
                 next(err)
             }
         }
+    }
+    else{
+        res.status(500)
+        next({message:'user does\'t exist please signup'})
     }
 }
 

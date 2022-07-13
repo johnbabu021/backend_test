@@ -6,6 +6,16 @@ const { registerController } = require('../controllers/registerController')
 const RegisterRouter=express.Router()
 
 
-RegisterRouter.route('/register').post(registerController)
-RegisterRouter.route('/login').post(loginController)
+RegisterRouter.route('/register')
+
+//@route /api/products
+//@access public
+//@functions register new user
+.post(registerController)
+RegisterRouter.route('/login')
+
+//@route /api/products
+//@access public
+//@functions login new user
+.post(loginController)
 module.exports=RegisterRouter

@@ -3,7 +3,7 @@ const { MongoClient } = require('mongodb');
 require("dotenv").config();
 
 const url =process.env.MNGD;
-const client = new MongoClient(url);
+const client = new MongoClient('mongodb://localhost:27017');
 
 const db = client.db('testbackend');
 const usersCollection=db.collection('test_user')
@@ -23,6 +23,4 @@ module.exports={
     usersCollection,
     productCollection,
     db
-    
-
 }

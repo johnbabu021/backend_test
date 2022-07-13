@@ -7,15 +7,16 @@ const registerController=async(req,res,next)=>{
     const {username,phone,email,password,role}=req.body
     const user = await usersCollection.findOne({ email })
     new Promise((resolve,reject)=>{
+        console.log(user,"user")
         if(user){
+            console.log('user exists')
             reject('user exists')
         }
         else{
             resolve()
         }
     }).then(async()=>{
-        if(username&&phone&&email&&password&&role)
-        {
+   
             const createdUser=  await bcrypt.hash(password, 10)
             .then(async(data)=>{
     
@@ -27,27 +28,24 @@ const registerController=async(req,res,next)=>{
                 phone:phone
             })
             return user
+           }).catch(err=>{
+            console.log(err,"err")
            })
            console.log(createdUser)
            const userExists = await usersCollection.findOne({ email })
-
+console.log(userExists,"useexits")
            if(createdUser)
 
         var token = await generateToken(createdUser.insertedId)
-        res.json({
+        console.log(token)
+        res.status(200).json({
             _id:userExists._id,
             username: userExists.username,
             email: userExists.email,
-            token: await generateToken(userExists._id)
+            role:userExists.role,
+            token: token
         })
-        }
-        else{
-            throw new Error('please fill out all the fields')
-        }
-    }).catch(err=>{
-        res.status(409)
-        next({message:err})
-
+       
     })
   
 }
