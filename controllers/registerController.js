@@ -45,6 +45,7 @@ const registerController=async(req,res,next)=>{
             throw new Error('please fill out all the fields')
         }
     }).catch(err=>{
+        res.status(409)
         next({message:err})
 
     })

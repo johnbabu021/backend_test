@@ -6,7 +6,7 @@ const loginController = async (req, res, next) => {
     const { email, password } = req.body
 
     if (typeof email === undefined && typeof password === undefined) {
-        res.status(200)
+        res.status(400)
         try {
             throw new Error('Email and password must be of type string')
         }

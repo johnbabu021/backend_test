@@ -3,13 +3,15 @@ const { connect } = require('./db/db')
 const cors=require('cors')
 const RegisterRouter = require('./routes/registerRoute')
 const { errHandler, notFound } = require('./middleware/erroHandler')
+const { productRoutes } = require('./routes/productRoutes')
 const app=express()
 app.use(express.json())
 connect()
 app.use(cors())
 
 
-app.use('/api',RegisterRouter)
+app.use('/api/user',RegisterRouter)
+app.use('/api/products',productRoutes)
 app.use(errHandler)
 app.use(notFound)
 

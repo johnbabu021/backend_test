@@ -17,6 +17,14 @@ const token=auth.substring(auth.indexOf(' ')+1)
 const decoded=jwt.verify(token,'shhh')
 console.log(decoded)
 req.user=await  findUserById(decoded)
+console.log(req.user)
+if(req.user.role==='admin'){
+    req.isAdmin=true
+}
+console.log(req.isAdmin)
+if(req.user.role==='manager'){
+    req.isManager=true
+}
 new Promise((resolve,reject)=>{
     if(decoded){
         resolve(true)

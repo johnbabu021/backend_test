@@ -1,7 +1,21 @@
 {
     "username":"johnbabu",
-    "email":"asdfasdfasfasd@gamcil.com",
+    "email":"asdfawerqwerwer@gamcil.com",
     "phone":"234",
     "password":"adfd",
     "role":"admin"
+}
+
+{
+    "name":"finer",
+    "description":"empty",
+    "price":"3000",
+    "count":"12"
+}
+{
+    "product_id":"62ce4723425509f71f9bdd4e",
+    "name":"name",
+    "description":"description",
+    "price":"price",
+    "count":"12"
 }

@@ -7,7 +7,7 @@ const client = new MongoClient(url);
 
 const db = client.db('testbackend');
 const usersCollection=db.collection('test_user')
-const postsCollection=db.collection('test_post')
+const productCollection=db.collection('test_prod')
 async function connect(){
     try{
       await  client.connect()
@@ -21,6 +21,7 @@ module.exports={
     
     connect,
     usersCollection,
+    productCollection,
     db
     
 
